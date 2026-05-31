@@ -54,12 +54,50 @@ button{
     <p id="msg"></p>
 </div>
 
-<script>
-function login(){
-    document.getElementById("msg").innerHTML =
-    "Firebase se conectará en el siguiente paso";
-}
-</script>
+<script type="module">
 
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+  getAuth,
+  signInWithEmailAndPassword
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyASi0J8nIYNk1x3KqzsPuTDQfBAxP1riV4",
+  authDomain: "toro-sponsor.firebaseapp.com",
+  projectId: "toro-sponsor",
+  storageBucket: "toro-sponsor.firebasestorage.app",
+  messagingSenderId: "380071282395",
+  appId: "1:380071282395:web:71b1ec542fde866daf6efe"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+window.login = async function () {
+
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+
+  try {
+
+    await signInWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+
+    window.location.href = "admin.html";
+
+  } catch (error) {
+
+    document.getElementById("msg").innerHTML =
+      "Correo o contraseña incorrectos";
+
+  }
+};
+
+</script>
 </body>
 </html>
