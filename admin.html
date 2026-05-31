@@ -25,5 +25,27 @@
     </div>
   </main>
   <script src="firebase-config.js"></script>
+  <script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyASi0J8nIYNk1x3KqzsPuTDQfBAxP1riV4",
+  authDomain: "toro-sponsor.firebaseapp.com",
+  projectId: "toro-sponsor",
+  storageBucket: "toro-sponsor.firebasestorage.app",
+  messagingSenderId: "380071282395",
+  appId: "1:380071282395:web:71b1ec542fde866daf6efe"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+onAuthStateChanged(auth, (user) => {
+  if (!user) {
+    window.location.href = "login.html";
+  }
+});
+</script>
 </body>
 </html>
