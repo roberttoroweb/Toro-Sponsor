@@ -6,7 +6,36 @@
   <title>Admin | Toro Sponsor</title>
   <link rel="stylesheet" href="style.css" />
 </head>
-<body>
+  <script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import {
+  getAuth,
+  signOut
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyASi0J8nIYNk1x3KqzsPuTDQfBAxP1riV4",
+  authDomain: "toro-sponsor.firebaseapp.com",
+  projectId: "toro-sponsor",
+  storageBucket: "toro-sponsor.firebasestorage.app",
+  messagingSenderId: "380071282395",
+  appId: "1:380071282395:web:71b1ec542fde866daf6efe"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+window.logout = async function() {
+  try {
+    await signOut(auth);
+    window.location.href = "login.html";
+  } catch (error) {
+    alert("Error al cerrar sesión");
+    console.error(error);
+  }
+};
+</script>
+  <body>
   <main class="section">
     <h1>Panel de Administrador</h1>
     <p>Bienvenido, Robert. Desde aquí controlarás Toro Sponsor.</p>
